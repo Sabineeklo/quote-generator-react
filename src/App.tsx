@@ -1,10 +1,13 @@
-import Home from "./pages/Home"
+import { Routes, Route } from 'react-router-dom'
+import Home from './pages/Home'
+import Favorites from './pages/Favorites'
 
 const App = () => {
   return (
-    <div className="w-screen h-screen bg-gray-200">
-      <Home />
-    </div>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/favorites" element={<Favorites />} />
+    </Routes>
   )
 }
 

@@ -6,3 +6,10 @@ svg {
   display: inline-block;
     vertical-align: text-top;
 }
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
