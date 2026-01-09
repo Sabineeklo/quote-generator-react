@@ -1,30 +1,28 @@
-import { useState } from 'react'
-import type { Quote } from '../types'
+import { useState } from "react";
+import type { Quote } from "../types";
 
 export const useQuote = () => {
-  const [quote, setQuote] = useState<Quote | null>(null)
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState<string | null>(null)
+  const [quote, setQuote] = useState<Quote | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const getNewQuote = async () => {
-    setLoading(true)
-    setError(null)
+    setLoading(true);
+    setError(null);
 
     try {
-      const res = await fetch('/api/quote')
-      if (!res.ok) throw new Error('Erreur lors de la récupération de la citation')
+      const res = await fetch("/api/quote");
+      if (!res.ok) throw new Error("Impossible de récupérer la citation");
 
-      const data = await res.json()
-
-      const newQuote = Array.isArray(data) ? data[0] : data
-      setQuote(newQuote)
+      const data: Quote = await res.json();
+      setQuote(data);
     } catch (err) {
-      console.error(err as Error)
-      setError((err as Error).message);
+      console.error(err);
+     setError((err as Error).message);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
-  return { quote, loading, error, getNewQuote }
-}
+  return { quote, loading, error, getNewQuote };
+};
